@@ -11,7 +11,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "API_URL", '"https://www.behance.net/"'
-        buildConfigField "String", "API_KEY", '"PK2ePWvvXiBXzzHWDHPCsjEvJdZzhIQm"'
+        buildConfigField "String", "API_KEY", '"UKIITaMdi4s9nsPGa0QlLy1jwhktBH2m"'
         buildConfigField "String", "API_QUERY", '"motorcycle"'
     }
     buildTypes {
