@@ -1,6 +1,8 @@
 package com.elegion.test.behancer.common;
 
-public interface BaseView {
+import com.arellomobile.mvp.MvpView;
+
+public interface BaseView extends MvpView {
 
     void showLoading();
     void hideLoading();

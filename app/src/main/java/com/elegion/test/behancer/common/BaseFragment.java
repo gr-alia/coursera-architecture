@@ -1,15 +1,15 @@
 package com.elegion.test.behancer.common;
 
-import android.support.v4.app.Fragment;
+import com.arellomobile.mvp.MvpAppCompatFragment;
 
-public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
+public abstract class BaseFragment extends MvpAppCompatFragment {
 
-    protected abstract P getPresenter();
+    protected abstract BasePresenter getPresenter();
 
     @Override
     public void onDetach() {
         super.onDetach();
-        if (getPresenter() == null){
+        if (getPresenter() == null) {
             return;
         }
 

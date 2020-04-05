@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.elegion.test.behancer.R;
 import com.elegion.test.behancer.common.BaseFragment;
 import com.elegion.test.behancer.common.RefreshOwner;
@@ -22,14 +24,21 @@ import com.elegion.test.behancer.ui.profile.ProfileFragment;
 
 import java.util.List;
 
-public class ProjectsFragment extends BaseFragment<ProjectsPresenter> implements ProjectsView, Refreshable, ProjectsAdapter.OnItemClickListener {
+public class ProjectsFragment extends BaseFragment implements ProjectsView, Refreshable, ProjectsAdapter.OnItemClickListener {
 
     private RecyclerView mRecyclerView;
     private RefreshOwner mRefreshOwner;
     private View mErrorView;
     private Storage mStorage;
     private ProjectsAdapter mProjectsAdapter;
-    private ProjectsPresenter presenter;
+
+    @InjectPresenter
+    ProjectsPresenter presenter;
+
+    @ProvidePresenter
+    ProjectsPresenter providePresenter(){
+        return new ProjectsPresenter(this, mStorage);
+    }
 
     public static ProjectsFragment newInstance() {
         return new ProjectsFragment();
@@ -66,8 +75,6 @@ public class ProjectsFragment extends BaseFragment<ProjectsPresenter> implements
         if (getActivity() != null) {
             getActivity().setTitle(R.string.projects);
         }
-
-        presenter = new ProjectsPresenter(this, mStorage);
 
         mProjectsAdapter = new ProjectsAdapter(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

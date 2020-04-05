@@ -4,28 +4,24 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.elegion.test.behancer.R;
 import com.elegion.test.behancer.common.BaseFragment;
 import com.elegion.test.behancer.common.RefreshOwner;
 import com.elegion.test.behancer.common.Refreshable;
 import com.elegion.test.behancer.data.Storage;
 import com.elegion.test.behancer.data.model.user.User;
-import com.elegion.test.behancer.utils.ApiUtils;
 import com.elegion.test.behancer.utils.DateUtils;
 import com.squareup.picasso.Picasso;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-
-public class ProfileFragment extends BaseFragment<ProfilePresenter> implements ProfileView, Refreshable {
+public class ProfileFragment extends BaseFragment implements ProfileView, Refreshable {
 
     public static final String PROFILE_KEY = "PROFILE_KEY";
 
@@ -34,7 +30,13 @@ public class ProfileFragment extends BaseFragment<ProfilePresenter> implements P
     private View mProfileView;
     private String mUsername;
     private Storage mStorage;
-    private ProfilePresenter presenter;
+    @InjectPresenter
+    ProfilePresenter presenter;
+
+    @ProvidePresenter
+    ProfilePresenter providePresenter() {
+        return new ProfilePresenter(this, mStorage);
+    }
 
     private ImageView mProfileImage;
     private TextView mProfileName;
@@ -76,8 +78,6 @@ public class ProfileFragment extends BaseFragment<ProfilePresenter> implements P
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        presenter = new ProfilePresenter(this, mStorage);
 
         if (getArguments() != null) {
             mUsername = getArguments().getString(PROFILE_KEY);
