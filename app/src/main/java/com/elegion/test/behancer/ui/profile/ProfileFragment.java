@@ -1,6 +1,7 @@
 package com.elegion.test.behancer.ui.profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,8 @@ import com.elegion.test.behancer.common.RefreshOwner;
 import com.elegion.test.behancer.common.Refreshable;
 import com.elegion.test.behancer.data.Storage;
 import com.elegion.test.behancer.data.model.user.User;
+import com.elegion.test.behancer.ui.userprojects.UserProjectsActivity;
+import com.elegion.test.behancer.ui.userprojects.UserProjectsFragment;
 import com.elegion.test.behancer.utils.DateUtils;
 import com.squareup.picasso.Picasso;
 
@@ -42,6 +45,7 @@ public class ProfileFragment extends BaseFragment implements ProfileView, Refres
     private TextView mProfileName;
     private TextView mProfileCreatedOn;
     private TextView mProfileLocation;
+    private View mShowProjectsBtn;
 
     public static ProfileFragment newInstance(Bundle args) {
         ProfileFragment fragment = new ProfileFragment();
@@ -73,6 +77,9 @@ public class ProfileFragment extends BaseFragment implements ProfileView, Refres
         mProfileName = view.findViewById(R.id.tv_display_name_details);
         mProfileCreatedOn = view.findViewById(R.id.tv_created_on_details);
         mProfileLocation = view.findViewById(R.id.tv_location_details);
+        mShowProjectsBtn = view.findViewById(R.id.btn_show_projects);
+
+        mShowProjectsBtn.setOnClickListener((view1 -> presenter.openUserProjectsFragment(mUsername)));
     }
 
     @Override
@@ -141,5 +148,14 @@ public class ProfileFragment extends BaseFragment implements ProfileView, Refres
         mErrorView.setVisibility(View.GONE);
         mProfileView.setVisibility(View.VISIBLE);
         bind(user);
+    }
+
+    @Override
+    public void openUserProjectsFragment(String username) {
+        Intent intent = new Intent(getActivity(), UserProjectsActivity.class);
+        Bundle args = new Bundle();
+        args.putString(UserProjectsFragment.USER_PROJECTS_KEY, username);
+        intent.putExtra(UserProjectsActivity.USERNAME_KEY, args);
+        startActivity(intent);
     }
 }

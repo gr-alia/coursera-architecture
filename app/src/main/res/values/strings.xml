@@ -5,4 +5,6 @@
     <string name="content_description">Image</string>
     <string name="separator">by</string>
     <string name="content_description_details">Image Detail</string>
+    <string name="show_projects">Show Projects</string>
+    <string name="projects_of">Projects of %s</string>
 </resources>

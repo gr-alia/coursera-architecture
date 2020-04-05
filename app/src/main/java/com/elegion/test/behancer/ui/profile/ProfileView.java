@@ -6,4 +6,7 @@ import com.elegion.test.behancer.data.model.user.User;
 public interface ProfileView extends BaseView {
 
      void showProfile(User user);
+
+     void openUserProjectsFragment(String username);
+
 }

@@ -34,4 +34,9 @@ public class ProfilePresenter extends BasePresenter<ProfileView> {
                         response -> view.showProfile(response.getUser()),
                         throwable -> view.showError()));
     }
+
+    public void openUserProjectsFragment(String username) {
+        view.openUserProjectsFragment(username);
+    }
+
 }
