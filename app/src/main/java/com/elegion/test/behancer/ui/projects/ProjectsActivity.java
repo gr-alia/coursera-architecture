@@ -4,10 +4,6 @@ import android.support.v4.app.Fragment;
 
 import com.elegion.test.behancer.common.SingleFragmentActivity;
 
-/**
- * Created by Vladislav Falzan.
- */
-
 public class ProjectsActivity extends SingleFragmentActivity {
 
     @Override

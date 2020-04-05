@@ -10,9 +10,6 @@ import com.elegion.test.behancer.data.model.project.Project;
 import com.elegion.test.behancer.utils.DateUtils;
 import com.squareup.picasso.Picasso;
 
-/**
- * Created by Vladislav Falzan.
- */
 
 public class ProjectsHolder extends RecyclerView.ViewHolder {
 

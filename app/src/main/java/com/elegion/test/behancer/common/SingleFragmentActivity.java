@@ -11,10 +11,6 @@ import com.elegion.test.behancer.AppDelegate;
 import com.elegion.test.behancer.R;
 import com.elegion.test.behancer.data.Storage;
 
-/**
- * Created by Vladislav Falzan.
- */
-
 public abstract class SingleFragmentActivity extends AppCompatActivity
         implements Storage.StorageOwner, SwipeRefreshLayout.OnRefreshListener, RefreshOwner {
 

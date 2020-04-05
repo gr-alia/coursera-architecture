@@ -12,10 +12,6 @@ import com.elegion.test.behancer.data.model.project.Project;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Vladislav Falzan.
- */
-
 public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsHolder> {
 
     @NonNull
